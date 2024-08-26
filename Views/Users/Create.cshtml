@@ -1,0 +1,44 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Add a new user";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Add a new User</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="UserId" class="control-label"></label>
+                        <input asp-for="UserId" class="form-control" readonly />
+                        <span asp-validation-for="UserId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserEmail" class="control-label"></label>
+                        <input asp-for="UserEmail" class="form-control" />
+                        <span asp-validation-for="UserEmail" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PassHash" class="control-label"></label>
+                        <input asp-for="PassHash" class="form-control" />
+                        <span asp-validation-for="PassHash" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IsFreelancer" class="control-label"></label>
+                        <input asp-for="IsFreelancer" class="form-control" />
+                        <span asp-validation-for="IsFreelancer" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Manage">Show all</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

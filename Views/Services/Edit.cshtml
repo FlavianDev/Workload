@@ -1,0 +1,88 @@
+﻿@using WorkloadApp.Data.ViewModels
+@model NewServiceVM
+
+@{
+    ViewData["Title"] = "Edit Service";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Edit Service - @Model.ServiceName</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="Edit">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+                    <div class="form-group text-center">
+                        <img class="rounded-circle" id="PicPreview" width="150" height="150" alt="" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceId" class="control-label"></label>
+                        <input asp-for="ServiceId" class="form-control" readonly />
+                        <span asp-validation-for="ServiceId" class="text-danger"></span>
+                    </div>
+                        <div class="form-group">
+                            <label asp-for="FreelancerId" class="control-label"></label>
+                            <input asp-for="FreelancerId" class="form-control" readonly/>
+                            <span asp-validation-for="FreelancerId" class="text-danger"></span>
+                        </div>
+                    <div class="form-group">
+                        <label asp-for="ServicePicURL" class="control-label"></label>
+                        <input asp-for="ServicePicURL" class="form-control" />
+                        <span asp-validation-for="ServicePicURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceName" class="control-label"></label>
+                        <input asp-for="ServiceName" class="form-control" />
+                        <span asp-validation-for="ServiceName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceDescription" class="control-label"></label>
+                        <input asp-for="ServiceDescription" class="form-control" />
+                        <span asp-validation-for="ServiceDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServicePrice" class="control-label"></label>
+                        <input asp-for="ServicePrice" class="form-control" />
+                        <span asp-validation-for="ServicePrice" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceUM" class="control-label"></label>
+                        <select asp-for="ServiceUM" class="form-control" asp-items="Html.GetEnumSelectList<WorkloadApp.Data.Enums.UM>()"></select>
+                        <span asp-validation-for="ServiceUM" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cities_ServicesIds" class="control-label"></label>
+                        <select asp-for="Cities_ServicesIds" asp-items="ViewBag.Cities" class="form-control" multiple></select>
+                        <span asp-validation-for="Cities_ServicesIds" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ServiceActive" class="control-label"></label>
+                        <input asp-for="ServiceActive" class="form-control" />
+                        <span asp-validation-for="ServiceActive" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                        <a class="btn btn-outline-secondary" asp-action="Manage">Show all</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var output = document.getElementById('PicPreview');
+            output.src = $(this).val();
+        })
+
+        $('#ServicePicURL').on("change", function () {
+            var output = document.getElementById('PicPreview');
+            output.src = $(this).val();
+        })
+    </script>
+}

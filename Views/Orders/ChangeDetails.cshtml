@@ -1,0 +1,31 @@
+﻿@using WorkloadApp.Data.ViewModels
+@model ShoppingCartItem
+
+@{
+    ViewData["Title"] = "Change order's details";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Edit Order's Details</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <form asp-action="ChangeDetails">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Details" class="control-label"></label>
+                        <textarea asp-for="Details" class="form-control"></textarea>
+                        <span asp-validation-for="Details" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-outline-success float-right" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

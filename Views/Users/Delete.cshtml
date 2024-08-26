@@ -1,0 +1,44 @@
+﻿@model User
+
+@{
+    ViewData["Title"] = "Delete User";
+}
+
+<div class="row text">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>Delete - @Model.UserEmail</h1>
+        </p>
+        <div class="row">
+            <div class="col-md-8 offset-2">
+                <div class="form-group">
+                    <label asp-for="UserId" class="control-label"></label>
+                    <input asp-for="UserId" class="form-control" readonly />
+                    <span asp-validation-for="UserId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="UserEmail" class="control-label"></label>
+                    <input asp-for="UserEmail" class="form-control" />
+                    <span asp-validation-for="UserEmail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PassHash" class="control-label"></label>
+                    <input asp-for="PassHash" class="form-control" />
+                    <span asp-validation-for="PassHash" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="IsFreelancer" class="control-label"></label>
+                    <input asp-for="IsFreelancer" class="form-control" readonly />
+                    <span asp-validation-for="IsFreelancer" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <form asp-action="Delete">
+                        <input type="hidden" asp-for="UserId" />
+                        <input type="submit" value="Confirm" class="btn btn-danger float-right" />
+                    </form>
+                    <a class="btn btn-outline-secondary" asp-action="Manage">Show all</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

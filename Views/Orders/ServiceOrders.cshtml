@@ -1,0 +1,51 @@
+﻿@model List<Order>
+
+@{
+    ViewData["Title"] = "Orders - " + ViewContext.RouteData.Values["id"].ToString();
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h4>List of your Orders</h4>
+        </p>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var order in Model)
+                {
+                    @foreach (var item in order.OrderItems)
+                    {
+                        @if (item.Service.ServiceId.ToString() == ViewContext.RouteData.Values["id"].ToString())
+                        {
+                        <tr>
+                        <td class="align-middle">@order.OrderId</td>
+                        <td class="align-middle">
+                            <ul style="list-style-type:none">
+                                    <li>
+                                        <div class="alert alert-info" role="alert">
+                                            <span class="badge bg-success">@item.Amount (@item.Service.ServiceUM)</span> [@item.Price.ToString() lei] - @item.Service.ServiceName - @item.Details
+                                        </div>
+                                    </li>
+                            </ul>
+                        </td>
+                        <td class="align-middle">
+                            @order.OrderItems.Where(m => m.Service.ServiceId == Convert.ToInt32(ViewContext.RouteData.Values["id"])).Select(m => m.Service.ServicePrice * m.Amount).Sum().ToString() lei
+                        </td>
+                        <td class="align-middle">@order.User.FullName - @order.User.Email</td>
+                        </tr>
+                        }
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
